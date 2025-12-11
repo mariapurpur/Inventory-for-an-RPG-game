@@ -21,7 +21,7 @@ namespace InventorySystem.Core.Items.Abstractions
             int baseDamage,
             EquipmentSlot slot = EquipmentSlot.Hand,
             int maxDurability = 100,
-            ItemRarity rarity = ItemRarity.Common) 
+            ItemRarity rarity = ItemRarity.Rare) 
             : base(id, name, 1, rarity)
         {
             BaseDamage = baseDamage;

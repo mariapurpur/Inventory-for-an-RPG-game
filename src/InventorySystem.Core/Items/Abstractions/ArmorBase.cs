@@ -21,7 +21,7 @@ namespace InventorySystem.Core.Items.Abstractions
             EquipmentSlot slot,
             int maxDurability = 100,
             int maxEnchantments = 2,
-            ItemRarity rarity = ItemRarity.Common)
+            ItemRarity rarity = ItemRarity.Rare)
             : base(id, name, 1, rarity)
         {
             BaseDefense = baseDefense;
