@@ -5,15 +5,13 @@ namespace InventorySystem.Core.Items.Enchantment
     public abstract class BaseEnchantment : IEnchantment
     {
         public string Name { get; protected set; }
-        public int Level { get; protected set; }
         public EnchantmentType Type { get; protected set; }
         
         protected Dictionary<string, float> _bonuses = new Dictionary<string, float>();
         
-        protected BaseEnchantment(string name, int level, EnchantmentType type)
+        protected BaseEnchantment(string name, EnchantmentType type)
         {
             Name = name;
-            Level = level;
             Type = type;
             InitializeBonuses();
         }
