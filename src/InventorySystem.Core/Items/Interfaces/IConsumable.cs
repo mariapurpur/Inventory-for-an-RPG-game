@@ -17,5 +17,6 @@ namespace InventorySystem.Core.Items.Interfaces
         float MaxHealth { get; }
         float Hunger { get; set; }
         float MaxHunger { get; }
+        float DamageMultiplier { get; set; }
     }
 }
