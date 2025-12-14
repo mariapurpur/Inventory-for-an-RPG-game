@@ -53,7 +53,6 @@ namespace InventorySystem.Core.Items.Abstractions
         public bool AddEnchantment(IEnchantment enchantment)
         {
             if (_enchantments.Count >= MaxEnchantments) return false;
-            
             _enchantments.Add(enchantment);
             return true;
         }

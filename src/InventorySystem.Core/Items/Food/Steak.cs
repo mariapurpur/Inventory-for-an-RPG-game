@@ -20,11 +20,6 @@ namespace InventorySystem.Core.Items.Food
             IsCooked = isCooked;
         }
         
-        // public override void Use(ICharacter target)
-        // {            
-        //    base.Use(target);
-        // }
-        
         public override IItem Clone()
         {
             return new Steak(Id, Name, IsCooked)
