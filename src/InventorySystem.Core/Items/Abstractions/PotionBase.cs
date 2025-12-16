@@ -35,15 +35,15 @@ namespace InventorySystem.Core.Items.Potion
         
         protected abstract IEffect CreateEffect();
         
-        public virtual void Use(ICharacter target)
+        public virtual void Use(InventorySystem.Core.Player.Player player)
         {
-            if (IsConsumed() || target == null) return;
+            if (IsConsumed() || player == null) return;
             
             UsesRemaining--;
             
             if (_effect != null)
             {
-                _effect.Apply(target);
+                _effect.Apply(player);
             }
         }
         

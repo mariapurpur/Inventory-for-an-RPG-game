@@ -1,3 +1,5 @@
+using InventorySystem.Core.Player;
+
 namespace InventorySystem.Core.Items.Interfaces
 {
     public interface IConsumable : IItem
@@ -6,7 +8,7 @@ namespace InventorySystem.Core.Items.Interfaces
         int MaxUses { get; }
         int HealthRestore { get; }
         int HungerRestore { get; }
-        void Use(ICharacter target);
+        void Use(InventorySystem.Core.Player.Player player);
         bool IsConsumed();
     }
 

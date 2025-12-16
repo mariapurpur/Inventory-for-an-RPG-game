@@ -11,8 +11,8 @@ namespace InventorySystem.Core.Items.Enchantment
         
         protected override void InitializeBonuses()
         {
-            _bonuses["наносимый урон"] = 0.20f; // к урону +20%
-            _bonuses["атака"] = 0.10f;
+            _bonuses["урон"] = 3; // к урону +3
+            _bonuses["атака"] = 2;
         }
     }
 }

@@ -1,5 +1,6 @@
 using InventorySystem.Core.Items.Abstractions;
 using InventorySystem.Core.Items.Interfaces;
+using InventorySystem.Core.Player.Equipment;
 
 namespace InventorySystem.Core.Items.Weapon
 {

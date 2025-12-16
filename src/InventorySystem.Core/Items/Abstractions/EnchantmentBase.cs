@@ -1,4 +1,5 @@
 using InventorySystem.Core.Items.Interfaces;
+using InventorySystem.Core.Player;
 
 namespace InventorySystem.Core.Items.Enchantment
 {
@@ -7,7 +8,7 @@ namespace InventorySystem.Core.Items.Enchantment
         public string Name { get; protected set; }
         public EnchantmentType Type { get; protected set; }
         
-        protected Dictionary<string, float> _bonuses = new Dictionary<string, float>();
+        protected Dictionary<string, int> _bonuses = new Dictionary<string, int>();
         
         protected BaseEnchantment(string name, EnchantmentType type)
         {
@@ -18,14 +19,14 @@ namespace InventorySystem.Core.Items.Enchantment
         
         protected abstract void InitializeBonuses();
         
-        public virtual float GetBonus(string statType)
+        public virtual int GetBonus(string statType)
         {
             if (_bonuses.ContainsKey(statType))
                 return _bonuses[statType];
-            return 0f;
+            return 0;
         }
         
-        public virtual void ApplyEffect(ICharacter target)
+        public virtual void ApplyEffect(InventorySystem.Core.Player.Player player)
         {
         }
     }

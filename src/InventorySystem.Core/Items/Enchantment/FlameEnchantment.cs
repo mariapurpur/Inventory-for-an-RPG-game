@@ -11,16 +11,16 @@ namespace InventorySystem.Core.Items.Enchantment
         
         protected override void InitializeBonuses()
         {
-            _bonuses["огненный урон"] = 3f; // урон огня +3
-            _bonuses["урон"] = 0.05f; // урон +5%
+            _bonuses["огненный урон"] = 3; // урон огня +3
+            _bonuses["урон"] = 1; // урон +1
         }
         
-        public override void ApplyEffect(ICharacter target)
+        public override void ApplyEffect(InventorySystem.Core.Player.Player player)
         {
-            if (target != null)
+            if (player != null)
             {
                 float fireDamage = GetBonus("огненный урон");
-                target.Health -= fireDamage;
+                player.Health -= fireDamage;
             }
         }
     }

@@ -11,8 +11,8 @@ namespace InventorySystem.Core.Items.Enchantment
         
         protected override void InitializeBonuses()
         {
-            _bonuses["защита"] = 0.15f; // защита +15%
-            _bonuses["прочность"] = 0.10f; // прочность +10%
+            _bonuses["защита"] = 2; // защита +2
+            _bonuses["прочность"] = 2; // прочность +2
         }
     }
 }

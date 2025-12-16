@@ -27,14 +27,14 @@ namespace InventorySystem.Core.Items.Abstractions
             UsesRemaining = maxUses;
         }
         
-        public void Use(ICharacter target)
+        public void Use(InventorySystem.Core.Player.Player player)
         {
-            if (IsConsumed() || target == null) return;
+            if (IsConsumed() || player == null) return;
             
             UsesRemaining--;
 
-            target.Health = Math.Min(target.MaxHealth, target.Health + HealthRestore);
-            target.Hunger = Math.Min(target.MaxHunger, target.Hunger + HungerRestore);
+            player.Health = Math.Min(player.MaxHealth, player.Health + HealthRestore);
+            player.Hunger = Math.Min(player.MaxHunger, player.Hunger + HungerRestore);
         }
         
         public bool IsConsumed()

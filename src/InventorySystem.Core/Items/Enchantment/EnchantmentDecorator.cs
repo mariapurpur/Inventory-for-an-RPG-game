@@ -1,5 +1,7 @@
 using InventorySystem.Core.Items.Interfaces;
 using System.Collections.Generic;
+using System.Security;
+using InventorySystem.Core.Player;
 
 namespace InventorySystem.Core.Items.Enchantment
 {
@@ -18,15 +20,12 @@ namespace InventorySystem.Core.Items.Enchantment
         
         public void AddEnchantment(IEnchantment enchantment)
         {
-            if (enchantment.Type == this.Type)
-            {
-                _additionalEnchantments.Add(enchantment);
-            }
+            _additionalEnchantments.Add(enchantment);
         }
         
-        public float GetBonus(string statType)
+        public int GetBonus(string statType)
         {
-            float totalBonus = _baseEnchantment.GetBonus(statType);
+            int totalBonus = _baseEnchantment.GetBonus(statType);
             
             foreach (var enchantment in _additionalEnchantments)
             {
@@ -36,13 +35,13 @@ namespace InventorySystem.Core.Items.Enchantment
             return totalBonus;
         }
         
-        public void ApplyEffect(ICharacter target)
+        public void ApplyEffect(InventorySystem.Core.Player.Player player)
         {
-            _baseEnchantment.ApplyEffect(target);
+            _baseEnchantment.ApplyEffect(player);
             
             foreach (var enchantment in _additionalEnchantments)
             {
-                enchantment.ApplyEffect(target);
+                enchantment.ApplyEffect(player);
             }
         }
     }

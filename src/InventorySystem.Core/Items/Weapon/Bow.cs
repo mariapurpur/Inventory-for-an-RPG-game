@@ -1,5 +1,6 @@
 using InventorySystem.Core.Items.Abstractions;
 using InventorySystem.Core.Items.Interfaces;
+using InventorySystem.Core.Player.Equipment;
 
 namespace InventorySystem.Core.Items.Weapon
 {
@@ -46,7 +47,7 @@ namespace InventorySystem.Core.Items.Weapon
             
             if (ArrowCount == MaxArrowCount)
             {
-                baseDamage = (int)(baseDamage * 1.1f); // +10% 
+                baseDamage = (int)(baseDamage * 2); // *2 
             }
             
             return baseDamage;

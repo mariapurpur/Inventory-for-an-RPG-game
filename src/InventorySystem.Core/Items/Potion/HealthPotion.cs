@@ -18,19 +18,19 @@ namespace InventorySystem.Core.Items.Potion
             return new HealthEffect(HealAmount, Duration);
         }
         
-        public override void Use(ICharacter target)
+        public override void Use(InventorySystem.Core.Player.Player player)
         {
-            if (IsConsumed() || target == null) 
+            if (IsConsumed() || player == null) 
                 return;
             
             if (Duration == 0)
             {
-                target.Health = Math.Min(target.MaxHealth, target.Health + HealAmount);
+                player.Health = Math.Min(player.MaxHealth, player.Health + HealAmount);
                 UsesRemaining--;
             }
             else
             {
-                base.Use(target);
+                base.Use(player);
             }
         }
         

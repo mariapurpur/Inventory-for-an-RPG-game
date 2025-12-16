@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using InventorySystem.Core.Player;
 
 namespace InventorySystem.Core.Items.Interfaces
 {
@@ -10,7 +11,7 @@ namespace InventorySystem.Core.Items.Interfaces
         bool AddEnchantment(IEnchantment enchantment);
         bool RemoveEnchantment(IEnchantment enchantment);
         bool HasEnchantment(string enchantmentType);
-        float GetEnchantmentBonus(string statType);
+        int GetEnchantmentBonus(string statType);
     }
 
     public interface IEnchantment
@@ -18,8 +19,8 @@ namespace InventorySystem.Core.Items.Interfaces
         string Name { get; }
         EnchantmentType Type { get; }
         
-        float GetBonus(string statType);
-        void ApplyEffect(ICharacter target);
+        int GetBonus(string statType);
+        void ApplyEffect(InventorySystem.Core.Player.Player player);
     }
 
     public enum EnchantmentType

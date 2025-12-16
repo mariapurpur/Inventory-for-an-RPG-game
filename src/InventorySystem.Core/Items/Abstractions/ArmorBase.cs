@@ -1,10 +1,11 @@
 using InventorySystem.Core.Items.Interfaces;
+using InventorySystem.Core.Player.Equipment;
 
 namespace InventorySystem.Core.Items.Abstractions
 {
     public abstract class ArmorBase : ItemBase, IEquippable, IEnchantable
     {
-        public EquipmentSlot Slot { get; protected set; }
+        public InventorySystem.Core.Player.Equipment.EquipmentSlot Slot { get; protected set; }
         public int Durability { get; set; }
         public int MaxDurability { get; protected set; }
         public int MaxEnchantments { get; protected set; }
@@ -47,7 +48,7 @@ namespace InventorySystem.Core.Items.Abstractions
         
         public virtual int CalculateDefense()
         {
-            float defenseMultiplier = 1.0f + GetEnchantmentBonus("Defense");
+            int defenseMultiplier = 1 + GetEnchantmentBonus("защита");
             return (int)(BaseDefense * defenseMultiplier);
         }
         
@@ -69,7 +70,7 @@ namespace InventorySystem.Core.Items.Abstractions
             return _enchantments.Any(e => e.Type.ToString() == enchantmentType);
         }
         
-        public float GetEnchantmentBonus(string statType)
+        public int GetEnchantmentBonus(string statType)
         {
             return _enchantments.Sum(e => e.GetBonus(statType));
         }
