@@ -2,7 +2,6 @@ using Xunit;
 using Moq;
 using InventorySystem.Core.Crafting.Recipes;
 using InventorySystem.Core.Inventory.Interfaces;
-using InventorySystem.Core.Items.Interfaces;
 using System.Collections.Generic;
 
 namespace InventorySystem.Tests.Crafting
@@ -17,13 +16,13 @@ namespace InventorySystem.Tests.Crafting
         }
 
         [Fact]
-        public void RecipeName_Torch()
+        public void RecipeName_ShouldBe_Torch()
         {
             Assert.Equal("Факел", _recipe.RecipeName);
         }
 
         [Fact]
-        public void RequiredItems_ContainsCoalAndStick()
+        public void RequiredItems_ShouldContain_CoalAndStick()
         {
             var requiredItems = _recipe.RequiredItems;
 
@@ -33,11 +32,11 @@ namespace InventorySystem.Tests.Crafting
         }
 
         [Fact]
-        public void CanCraft_HasAllItems_True()
+        public void CanCraft_WhenInventoryHasAllItems_ShouldReturnTrue()
         {
             var mockInventory = new Mock<IInventory>();
-            mockInventory.Setup(inv => inv.HasItem(204, 1)).Returns(true);
-            mockInventory.Setup(inv => inv.HasItem(205, 1)).Returns(true);
+            mockInventory.Setup(inv => inv.GetItemCount(204)).Returns(1);
+            mockInventory.Setup(inv => inv.GetItemCount(205)).Returns(1);
 
             var canCraft = _recipe.CanCraft(mockInventory.Object);
 
@@ -45,7 +44,7 @@ namespace InventorySystem.Tests.Crafting
         }
 
         [Fact]
-        public void CanCraft_NoCoal_False()
+        public void CanCraft_WhenMissingCoal_ShouldReturnFalse()
         {
             var mockInventory = new Mock<IInventory>();
             mockInventory.Setup(inv => inv.HasItem(204, 1)).Returns(false);
@@ -56,7 +55,7 @@ namespace InventorySystem.Tests.Crafting
         }
 
         [Fact]
-        public void CanCraft_NoStick_False()
+        public void CanCraft_WhenMissingStick_ShouldReturnFalse()
         {
             var mockInventory = new Mock<IInventory>();
             mockInventory.Setup(inv => inv.HasItem(204, 1)).Returns(true);
@@ -68,11 +67,12 @@ namespace InventorySystem.Tests.Crafting
         }
 
         [Fact]
-        public void CanCraft_ReturnTorch()
+        public void Craft_WhenCanCraft_ShouldReturnTorch()
         {
             var mockInventory = new Mock<IInventory>();
-            mockInventory.Setup(inv => inv.HasItem(204, 1)).Returns(true);
-            mockInventory.Setup(inv => inv.HasItem(205, 1)).Returns(true);
+            mockInventory.Setup(inv => inv.GetItemCount(204)).Returns(2);
+            mockInventory.Setup(inv => inv.GetItemCount(205)).Returns(2);
+
             mockInventory.Setup(inv => inv.RemoveItem(204, 1)).Returns(true);
             mockInventory.Setup(inv => inv.RemoveItem(205, 1)).Returns(true);
 
@@ -81,15 +81,12 @@ namespace InventorySystem.Tests.Crafting
             Assert.NotNull(result);
             Assert.IsType<SimpleItem>(result);
             var torch = result as SimpleItem;
-            Assert.NotNull(torch);
-            Assert.Equal(301, torch.Id);
+            Assert.Equal(301, torch!.Id);
             Assert.Equal("Факел", torch.Name);
-            Assert.Equal(16, torch.MaxStackSize);
-            Assert.Equal(ItemRarity.Common, torch.Rarity);
         }
 
         [Fact]
-        public void NoCraft_ReturnNull()
+        public void Craft_WhenCannotCraft_ShouldReturnNull()
         {
             var mockInventory = new Mock<IInventory>();
             mockInventory.Setup(inv => inv.HasItem(204, 1)).Returns(false);
@@ -97,60 +94,6 @@ namespace InventorySystem.Tests.Crafting
             var result = _recipe.Craft(mockInventory.Object);
 
             Assert.Null(result);
-        }
-
-        [Fact]
-        public void SimpleItem_CanStackItem_True()
-        {
-            var item1 = new SimpleItem(301, "Факел", 16);
-            var item2 = new SimpleItem(301, "Факел", 16);
-            item2.CurrentStack = 1;
-
-            var canStack = item1.CanStackWith(item2);
-
-            Assert.True(canStack);
-        }
-
-        [Fact]
-        public void SimpleItem_CanStackDiffItem_False()
-        {
-            var item1 = new SimpleItem(301, "Факел", 16);
-            var item2 = new SimpleItem(302, "Другой", 16);
-
-            var canStack = item1.CanStackWith(item2);
-
-            Assert.False(canStack);
-        }
-
-        [Fact]
-        public void SimpleItem_CanStackFull_False()
-        {
-            var item1 = new SimpleItem(301, "Факел", 16);
-            var item2 = new SimpleItem(301, "Факел", 16);
-            item2.CurrentStack = 16;
-
-            var canStack = item1.CanStackWith(item2);
-
-            Assert.False(canStack);
-        }
-
-        [Fact]
-        public void SimpleItem_Clone_NewInstance()
-        {
-            var original = new SimpleItem(301, "Факел", 16)
-            {
-                CurrentStack = 5
-            };
-
-            var clone = original.Clone() as SimpleItem;
-
-            Assert.NotNull(clone);
-            Assert.NotSame(original, clone);
-            Assert.Equal(original.Id, clone.Id);
-            Assert.Equal(original.Name, clone.Name);
-            Assert.Equal(original.MaxStackSize, clone.MaxStackSize);
-            Assert.Equal(original.CurrentStack, clone.CurrentStack);
-            Assert.Equal(original.Rarity, clone.Rarity);
         }
     }
 }

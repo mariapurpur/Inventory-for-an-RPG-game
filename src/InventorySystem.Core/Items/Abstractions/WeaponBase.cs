@@ -29,6 +29,7 @@ namespace InventorySystem.Core.Items.Abstractions
             Slot = slot;
             MaxDurability = maxDurability;
             Durability = maxDurability;
+            MaxEnchantments = 2;
         }
         
         public bool Equip()

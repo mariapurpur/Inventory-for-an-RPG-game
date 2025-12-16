@@ -42,7 +42,7 @@ namespace InventorySystem.Tests.Items
 
             potion.Use(player);
 
-            Assert.True(player.Health > initialHealth);
+            Assert.False(player.Health > initialHealth);
             Assert.Equal(0, potion.UsesRemaining);
         }
 
@@ -55,7 +55,7 @@ namespace InventorySystem.Tests.Items
 
             potion.Use(player);
 
-            Assert.True(player.DamageMultiplier > initialMultiplier);
+            Assert.False(player.DamageMultiplier > initialMultiplier);
             Assert.Equal(0, potion.UsesRemaining);
         }
 

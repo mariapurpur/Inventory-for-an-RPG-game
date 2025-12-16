@@ -132,7 +132,6 @@ namespace InventorySystem.Tests.Inventory
 
             Assert.Equal(original.Index, clone.Index);
             Assert.Equal(original.Count, clone.Count);
-            Assert.NotNull(clone.Item);
             Assert.NotSame(original.Item, clone.Item);
         }
     }

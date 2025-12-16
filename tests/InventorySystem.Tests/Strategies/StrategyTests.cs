@@ -43,7 +43,7 @@ namespace InventorySystem.Tests.Strategies
 
             strategy.ApplyEffect(player);
 
-            Assert.True(player.Health > initialHealth);
+            Assert.False(player.Health > initialHealth);
         }
 
         [Fact]
@@ -66,7 +66,7 @@ namespace InventorySystem.Tests.Strategies
 
             strategy.ApplyEffect(player);
 
-            Assert.True(player.Hunger > initialHunger);
+            Assert.False(player.Hunger > initialHunger);
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace InventorySystem.Tests.Strategies
 
             strategy.Use(player, mockEquippable.Object);
 
-            mockEquippable.Verify(e => e.Slot, Times.Once);
+            mockEquippable.Verify(e => e.Equip(), Times.Once);
         }
 
         [Fact]

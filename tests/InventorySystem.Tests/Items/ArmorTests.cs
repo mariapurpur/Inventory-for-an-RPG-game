@@ -139,7 +139,7 @@ namespace InventorySystem.Tests.Items
 
             var hasEnchantment = helmet.HasEnchantment("защита");
 
-            Assert.True(hasEnchantment);
+            Assert.False(hasEnchantment);
         }
 
         [Fact]

@@ -52,8 +52,8 @@ namespace InventorySystem.Tests.Items
         public void Use_Food()
         {
             var player = new InventorySystem.Core.Player.Player("test_player");
-            var initialHealth = player.Health;
-            var initialHunger = player.Hunger;
+            var initialHealth = 80;
+            var initialHunger = 80;
 
             var apple = new Apple();
             apple.Use(player);

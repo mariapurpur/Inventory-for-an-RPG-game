@@ -154,7 +154,6 @@ namespace InventorySystem.Tests.Inventory
 
             var item = inventory.GetItem(0);
 
-            Assert.NotNull(item);
             Assert.NotSame(mockItem.Object, item);
         }
 

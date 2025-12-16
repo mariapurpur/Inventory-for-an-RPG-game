@@ -19,11 +19,11 @@ namespace InventorySystem.Core.Crafting.Recipes
         {
             if (!CanCraft(inventory))
                 return null;
-                
+
             if (!ConsumeItems(inventory))
                 return null;
             
-            return new Sword(id: 101, name: "крутой меч");
+            return new Sword();
         }
     }
 }

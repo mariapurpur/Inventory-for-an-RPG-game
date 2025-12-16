@@ -61,7 +61,7 @@ namespace InventorySystem.Tests.Items
         {
             var item = new TestItem(101, "предмет");
 
-            var result = item.CanStackWith(null);
+            var result = item.CanStackWith(null!);
 
             Assert.False(result);
         }
